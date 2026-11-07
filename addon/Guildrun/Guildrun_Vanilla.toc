@@ -1,0 +1,9 @@
+## Interface: 11505, 11506
+## Title: |cffffaa00Guildrun|r - Das Dunkelmond-Derby (Classic)
+## Notes: Gilden-Levelrennen im Dunkelmond-Jahrmarkt-Stil mit Derby-Strecke und Meilenstein-Wimpeln fuer Classic Era & SoD
+## Author: Kolonieblagen NRW
+## Version: 2.1.0
+## SavedVariables: GuildrunDB
+
+Guildrun.lua
+GuildrunUI.lua

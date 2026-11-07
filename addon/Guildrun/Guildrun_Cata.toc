@@ -1,0 +1,9 @@
+## Interface: 40401, 40402
+## Title: |cffffaa00Guildrun|r - Das Dunkelmond-Derby (Cataclysm)
+## Notes: Gilden-Levelrennen im Dunkelmond-Jahrmarkt-Stil mit Derby-Strecke und Meilenstein-Wimpeln fuer Cataclysm Classic
+## Author: Kolonieblagen NRW
+## Version: 2.1.0
+## SavedVariables: GuildrunDB
+
+Guildrun.lua
+GuildrunUI.lua

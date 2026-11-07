@@ -1,0 +1,10 @@
+## Interface: 110007, 110100, 110200
+## Title: |cffffaa00Guildrun|r - Das Dunkelmond-Derby (Retail)
+## Notes: Gilden-Levelrennen im Dunkelmond-Jahrmarkt-Stil mit Derby-Strecke und Meilenstein-Wimpeln fuer WoW Retail
+## Author: Kolonieblagen NRW
+## Version: 2.1.0
+## SavedVariables: GuildrunDB
+## IconTexture: Interface\Icons\Inv_Misc_Ticket_Tarot_Darkmoon_01
+
+Guildrun.lua
+GuildrunUI.lua

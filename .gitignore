@@ -1,0 +1,29 @@
+# =========================================================================
+# Guildrun - Git Ignore Konfiguration
+# =========================================================================
+
+# Lokale Konfigurationen mit sensiblen Passwoertern / Server-URLs
+web/api/config.php
+web/uploader_config.json
+
+# Live-Spieldaten, Meilenstein-Backups & historische Snapshots
+web/milestones_backup.json
+web/backups/
+web/api/derby_data.json
+web/api/backups/
+web/api/*.log
+*.log
+
+# Temporaere Dateien & Betriebssystem-Artefakte
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor-Dateien
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

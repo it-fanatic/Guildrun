@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guildrun - Das Dunkelmond-Derby | Gilden-Levelrennen</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/derby.css?v=8">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Zentrierter Haupt-Container in einheitlicher Breite -->
+  <div class="derby-main-container">
+
+    <!-- 1. Dunkelmond-Jahrmarkt Header Kasten -->
+    <header class="derby-header-card">
+      <div class="derby-awning">
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+        <div class="stripe purple"></div><div class="stripe gold"></div>
+      </div>
+      
+      <div class="header-inner">
+        <div class="neon-sign">
+          <h1 class="derby-title">🎪 GUILDRUN DUNKELMOND-DERBY 🎪</h1>
+          <p class="derby-subtitle"><span class="sub-part">Dunkelmond-Jahrmarkt</span><span class="desktop-sep"> • </span><span class="sub-part">Gilden-Volksreittier-Rennen & Meilensteine</span></p>
+        </div>
+
+        <div class="derby-stats-panel">
+          <div class="stat-box">
+            <span class="stat-label">TEILNEHMER</span>
+            <span class="stat-value" id="totalPlayersCount">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">LEADER LEVEL</span>
+            <span class="stat-value gold" id="leaderLevel">Lvl 1</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">RENNEN BIS</span>
+            <span class="stat-value highlight" id="trackLimitText">Lvl 30</span>
+          </div>
+          <div class="status-indicator">
+            <span class="pulse-dot"></span> <span id="connStatus">Live-Abfrage aktiv</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Rennbahn Kasten -->
+    <section class="derby-track-card">
+      
+      <div class="race-toolbar">
+        <div class="scroll-info">
+          <span class="info-icon">ℹ</span>
+          <span>Dynamische Rennstrecke: Freigeschaltet bis <b id="unlockedLevelBadge">Level 30</b> (Passt sich automatisch an)</span>
+        </div>
+      </div>
+
+      <!-- Scroll-Container Wrapper fuer sauberen Außenabstand (Padding) -->
+      <div class="track-scroll-wrapper">
+        <div class="track-viewport" id="trackViewport">
+          <div class="track-canvas" id="trackCanvas">
+            
+            <div class="track-header-scale" id="trackHeaderScale">
+              <div class="scale-player-spacer">SPUR / SPIELER</div>
+              <div class="scale-zones-wrapper" id="scaleZonesWrapper"></div>
+            </div>
+
+            <div class="lanes-container" id="lanesContainer"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 3. Vier Statistik-Kacheln unter dem Derby (Top 5 Bestenlisten) -->
+    <section class="derby-leaderboards-card">
+      <div class="leaderboards-header">
+        <h2>🏆 HALL OF FAME & STATISTIKEN (TOP 5) 🏆</h2>
+      </div>
+
+      <div class="leaderboards-grid">
+        
+        <!-- Statistik 1: Höchstes Level -->
+        <div class="leaderboard-box">
+          <div class="lb-title">
+            <span class="lb-icon">🥇</span>
+            <span>HÖCHSTES LEVEL</span>
+          </div>
+          <div class="lb-list" id="lbHighestLevel"></div>
+        </div>
+
+        <!-- Statistik 2: Schnellster beim Leveln (Speedrunner /played) -->
+        <div class="leaderboard-box">
+          <div class="lb-title">
+            <span class="lb-icon">⚡</span>
+            <span>SPEEDRUNNER (/PLAYED)</span>
+          </div>
+          <div class="lb-list" id="lbFastestLevel"></div>
+        </div>
+
+        <!-- Statistik 3: Max Tode (Friedhofs-König) -->
+        <div class="leaderboard-box">
+          <div class="lb-title">
+            <span class="lb-icon">💀</span>
+            <span>MEISTE TODE (GRAVEYARD)</span>
+          </div>
+          <div class="lb-list" id="lbMaxDeaths"></div>
+        </div>
+
+        <!-- Statistik 4: Top Charaktere (Account-Wertung) -->
+        <div class="leaderboard-box">
+          <div class="lb-title">
+            <span class="lb-icon">🎖️</span>
+            <span>TOP CHARS (MAX / ACCOUNT)</span>
+          </div>
+          <div class="lb-list" id="lbTopAccounts"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="derby-footer">
+      <p>Dunkelmond-Jahrmarkt • Gilden-Levelrennen & Meilensteine • Befehl Ingame: <code>/guildrun</code> oder <code>/gr</code></p>
+    </footer>
+
+  </div>
+
+  <!-- Backdrop fuer Mobile Tooltip-Modal -->
+  <div id="tooltipBackdrop" class="tooltip-backdrop hidden"></div>
+
+  <!-- Detail-Modal fuer Meilenstein-Wimpel & Reittiere -->
+  <div id="pennantTooltip" class="pennant-tooltip hidden">
+    <div class="tt-header">
+      <span class="tt-flag-icon">🚩</span>
+      <span class="tt-title" id="ttTitle">Meilenstein Level 20</span>
+      <button type="button" class="tt-close-btn" aria-label="Schließen">✕</button>
+    </div>
+    <div class="tt-body">
+      <div class="tt-row">
+        <span class="tt-label">⏱️ Spielzeit (/played):</span>
+        <span class="tt-val" id="ttTime">2t 4h 12m</span>
+      </div>
+      <div class="tt-row">
+        <span class="tt-label">🗺️ Erreicht in Zone:</span>
+        <span class="tt-val" id="ttZone">Schlingendorntal</span>
+      </div>
+      <div class="tt-row">
+        <span class="tt-label">💀 Tode bis dahin:</span>
+        <span class="tt-val danger" id="ttDeaths">0</span>
+      </div>
+    </div>
+    <div class="tt-close-hint">Tippen zum Schließen</div>
+  </div>
+
+  <script src="js/derby.js?v=5"></script>
+</body>
+</html>
