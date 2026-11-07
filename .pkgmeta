@@ -1,0 +1,13 @@
+package-as: Guildrun
+
+move-folders:
+  addon/Guildrun: Guildrun
+
+ignore:
+  - web
+  - CURSEFORGE_RELEASE.md
+  - Guildrun.zip
+  - icon.png
+  - LICENSE
+  - README.md
+  - .pkgmeta

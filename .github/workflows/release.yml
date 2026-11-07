@@ -1,0 +1,31 @@
+name: Package and Release to CurseForge
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Package and Publish
+    runs-on: ubuntu-latest
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run WoW Addon Packager (CurseForge & GitHub Release)
+        uses: BigWigsMods/packager@v2
+        with:
+          args: ${{ secrets.CF_PROJECT_ID != '' && format('-t addon/Guildrun -p {0}', secrets.CF_PROJECT_ID) || '-t addon/Guildrun' }}
