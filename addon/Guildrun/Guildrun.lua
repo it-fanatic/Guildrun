@@ -428,12 +428,12 @@ local function HandleAddonMessage(prefix, message, channel, sender)
         -- Unterstuetzung fuer aeltere Versionen, falls zusaetzlicher Prefix im Paket war
         local offset = 0
         local knownRaces = { Human=true, Orc=true, Dwarf=true, NightElf=true, Undead=true, Tauren=true, Gnome=true, Troll=true, BloodElf=true, Draenei=true }
-        if parts[3] and knownRaces[parts[3]] then
+        if parts[4] and knownRaces[parts[4]] and not knownRaces[parts[3]] then
             offset = 1
         end
 
         local pRawName = parts[2 + offset]
-        if not pRawName or pRawName == "" then return end
+        if not pRawName or pRawName == "" or knownRaces[pRawName] then return end
 
         local pKey = pRawName
         local pName = pRawName
@@ -457,6 +457,7 @@ local function HandleAddonMessage(prefix, message, channel, sender)
         local pRace = parts[3 + offset] or "Human"
         local pClass = parts[4 + offset] or "WARRIOR"
         local pLevel = tonumber(parts[5 + offset]) or 1
+        if pLevel < 1 then return end
         local pProg = tonumber(parts[6 + offset]) or 0
         local pZone = parts[7 + offset] or ""
         local pDeaths = tonumber(parts[8 + offset]) or 0
@@ -589,7 +590,13 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 minimapPos = 215,
             }
 
-            -- Migration von veralteten Datenfeldern
+            -- Migration von veralteten Datenfeldern & Bereinigung von Geister-Eintraegen
+            local invalidRaceNames = { Human=true, Orc=true, Dwarf=true, NightElf=true, Undead=true, Tauren=true, Gnome=true, Troll=true, BloodElf=true, Draenei=true }
+            for k, p in pairs(GuildrunDB.players) do
+                if invalidRaceNames[k] or (p.level and p.level < 1) then
+                    GuildrunDB.players[k] = nil
+                end
+            end
             for k, p in pairs(GuildrunDB.players) do
                 local _, sur = k:match("^([^-]+)%-(.*)$")
                 if sur and p.realm == sur then
