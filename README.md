@@ -100,7 +100,7 @@ Guildrun/
 ## 🚀 Schnellanleitung
 
 ### Variante A: Nur das Addon nutzen (für Gildenmitglieder)
-1. Lade die aktuelle `Guildrun.zip` aus den [Releases](https://github.com/dein-account/Guildrun/releases) herunter.
+1. Lade die aktuelle `Guildrun.zip` aus den [Releases](https://github.com/it-fanatic/Guildrun/releases) herunter.
 2. Entpacke den Ordner `Guildrun` in dein WoW-Addon-Verzeichnis:
    - `World of Warcraft\_retail_\Interface\AddOns\` (oder `_classic_`, `_classic_era_`, `_forever_`)
 3. Im Spiel eingeben:
