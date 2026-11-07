@@ -4,7 +4,7 @@
 ## Author: Kolonieblagen NRW
 ## Version: 2.1.0
 ## SavedVariables: GuildrunDB
-## IconTexture: Interface\Icons\Inv_Misc_Ticket_Tarot_Darkmoon_01
+## IconTexture: Interface\Icons\Ability_Mount_RidingHorse
 
 Guildrun.lua
 GuildrunUI.lua

@@ -380,7 +380,7 @@ function GuildrunUI.CreateFrame()
     local tabStats = CreateFrame("Button", nil, topBar, "UIPanelButtonTemplate")
     tabStats:SetSize(140, 24)
     tabStats:SetPoint("LEFT", tabTrack, "RIGHT", 8, 0)
-    tabStats:SetText("|TInterface\\Icons\\Inv_Misc_Ticket_Tarot_Darkmoon_01:14:14:0:0|t Hall of Fame")
+    tabStats:SetText("|TInterface\\Icons\\Achievement_GuildPerk_MassResurrection:14:14:0:0|t Hall of Fame")
     mainFrame.tabStats = tabStats
 
     tabTrack:SetScript("OnClick", function()
@@ -477,7 +477,7 @@ function GuildrunUI.CreateFrame()
         { title = "|TInterface\\Icons\\Inv_Misc_Coin_01:14:14:0:0|t HOECHSTES LEVEL", color = "ffd700" },
         { title = "|TInterface\\Icons\\Spell_Nature_Swiftness:14:14:0:0|t SPEEDRUNNER (/played)", color = "00e5ff" },
         { title = "|TInterface\\Icons\\Ability_Creature_Cursed_02:14:14:0:0|t MEISTE TODE", color = "ff5252" },
-        { title = "|TInterface\\Icons\\Inv_Misc_Ticket_Tarot_Darkmoon_01:14:14:0:0|t TOP CHARS (ACCOUNT)", color = "ffd700" }
+        { title = "|TInterface\\Icons\\Achievement_General:14:14:0:0|t TOP CHARS (ACCOUNT)", color = "ffd700" }
     }
 
     statBoxes = {}
