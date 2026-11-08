@@ -28,4 +28,4 @@ jobs:
       - name: Run WoW Addon Packager (CurseForge & GitHub Release)
         uses: BigWigsMods/packager@v2
         with:
-          args: -t addon/Guildrun -p 1790182
+          args: -p 1790182
