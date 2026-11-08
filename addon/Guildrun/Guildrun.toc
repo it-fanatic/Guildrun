@@ -3,6 +3,7 @@
 ## Notes: Gilden-Levelrennen im Dunkelmond-Jahrmarkt-Stil mit Derby-Strecke und Meilenstein-Wimpeln
 ## Author: Kolonieblagen NRW
 ## Version: 2.1.0
+## X-Curse-Project-ID: 1790182
 ## SavedVariables: GuildrunDB
 ## IconTexture: Interface\Icons\Ability_Mount_RidingHorse
 

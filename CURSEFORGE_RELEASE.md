@@ -8,6 +8,7 @@ This document contains all official English copy-paste texts, metadata, and step
 
 ### 📌 Project Metadata
 * **Project Name:** `Guildrun - Darkmoon Derby`
+* **CurseForge Project ID:** `1790182`
 * **Short Description / Summary** *(max 200 characters)*:
 > Turn your guild's leveling into a thrilling Darkmoon Faire race! Live derby track, milestone pennants, custom mounts & Hall of Fame — 100% standalone via guild chat.
 

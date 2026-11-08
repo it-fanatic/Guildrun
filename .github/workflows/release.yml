@@ -28,4 +28,4 @@ jobs:
       - name: Run WoW Addon Packager (CurseForge & GitHub Release)
         uses: BigWigsMods/packager@v2
         with:
-          args: ${{ secrets.CF_PROJECT_ID != '' && format('-t addon/Guildrun -p {0}', secrets.CF_PROJECT_ID) || '-t addon/Guildrun' }}
+          args: -t addon/Guildrun -p 1790182

@@ -3,6 +3,7 @@
 ## Notes: Gilden-Levelrennen im Dunkelmond-Jahrmarkt-Stil mit Derby-Strecke und Meilenstein-Wimpeln fuer Classic Era & SoD
 ## Author: Kolonieblagen NRW
 ## Version: 2.1.0
+## X-Curse-Project-ID: 1790182
 ## SavedVariables: GuildrunDB
 
 Guildrun.lua
