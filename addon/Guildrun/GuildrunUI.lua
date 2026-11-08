@@ -109,6 +109,27 @@ function GuildrunUI.LoadDemoData()
     end
 end
 
+function GuildrunUI.ClearDemoData()
+    demoLoaded = false
+    local demoNames = {
+        ["Ironbeard"] = true, ["Lumina"] = true, ["Shadowpaw"] = true, ["Rotzahn"] = true,
+        ["Oakenshield"] = true, ["Nightstalker"] = true, ["Thunderhoof"] = true,
+        ["Sparkplug"] = true, ["Bloodfang"] = true, ["Rotwalker"] = true
+    }
+    if GuildrunDB and GuildrunDB.players then
+        for name, _ in pairs(demoNames) do
+            GuildrunDB.players[name] = nil
+        end
+    end
+    if Guildrun_UpdateLocalPlayerRecord then
+        Guildrun_UpdateLocalPlayerRecord()
+    end
+    if GuildrunUI and GuildrunUI.Refresh then
+        GuildrunUI.Refresh()
+    end
+    print("|cff00ff00[Guildrun]|r Demo-Modus beendet! Demo-Charaktere entfernt.")
+end
+
 local function ApplyBackdropSafe(frame, bgFile, edgeFile, edgeSize)
     if BackdropTemplateMixin and Mixin then
         Mixin(frame, BackdropTemplateMixin)

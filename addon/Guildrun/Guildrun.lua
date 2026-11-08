@@ -849,13 +849,25 @@ SlashCmdList["GUILDRUN"] = function(msg)
         elseif GuildrunUI and GuildrunUI.ShowRegistrationDialog then
             GuildrunUI.ShowRegistrationDialog()
         end
-    elseif cmd == "demo" then
-        if GuildrunUI and GuildrunUI.LoadDemoData then
-            GuildrunUI.LoadDemoData()
-            if not (GuildrunUI.CreateFrame():IsShown()) then
-                GuildrunUI.Toggle()
+    elseif cmd == "demo" or cmd == "test" then
+        local sub = string.lower(arg or "")
+        if sub == "off" or sub == "stop" or sub == "clear" or sub == "beenden" or sub == "exit" or sub == "0" then
+            if GuildrunUI and GuildrunUI.ClearDemoData then
+                GuildrunUI.ClearDemoData()
             end
-            print("|cffffaa00[Guildrun]|r Demo-Modus mit 10 Rennteilnehmern geladen!")
+        else
+            if GuildrunUI and GuildrunUI.LoadDemoData then
+                GuildrunUI.LoadDemoData()
+                if not (GuildrunUI.CreateFrame():IsShown()) then
+                    GuildrunUI.Toggle()
+                end
+                print("|cffffaa00[Guildrun]|r Demo-Modus mit 10 Rennteilnehmern geladen!")
+                print("|cffaaaaaaTipp: Mit |cff00ff00/gr demo off|r beendest du den Demo-Modus wieder.|r")
+            end
+        end
+    elseif cmd == "cleardemo" or cmd == "undemo" then
+        if GuildrunUI and GuildrunUI.ClearDemoData then
+            GuildrunUI.ClearDemoData()
         end
     elseif cmd == "status" or cmd == "debug" then
         local charKey, name = Guildrun_GetFullPlayerName("player")
