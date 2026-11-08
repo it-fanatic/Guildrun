@@ -1062,3 +1062,216 @@ body {
     letter-spacing: 0.5px;
   }
 }
+
+/* =========================================================================
+   TEXTMODE / TABELLEN-ANSICHT (FÜR SCREENSHOTS & DISCORD)
+   ========================================================================= */
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(180deg, #421c5e 0%, #260d37 100%);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+.view-toggle-btn:hover {
+  background: linear-gradient(180deg, #5a2680 0%, #35134d 100%);
+  box-shadow: 0 0 10px rgba(198, 155, 76, 0.4);
+  color: #fff;
+}
+
+.derby-textmode-card {
+  background: radial-gradient(circle at 50% 0%, #241033 0%, var(--wood-dark) 85%);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.7);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.textmode-header {
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(198, 155, 76, 0.25);
+  padding-bottom: 12px;
+}
+
+.tm-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tm-title-row h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: var(--gold);
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.tm-badge {
+  background: rgba(198, 155, 76, 0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tm-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.tm-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(198, 155, 76, 0.2);
+}
+
+.tm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.tm-table thead tr {
+  background: rgba(20, 8, 28, 0.95);
+  border-bottom: 2px solid var(--gold);
+}
+
+.tm-table th {
+  padding: 12px 14px;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.tm-table tbody tr {
+  border-bottom: 1px solid rgba(198, 155, 76, 0.12);
+  transition: background 0.15s ease;
+}
+
+.tm-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tm-table tbody tr:hover {
+  background: rgba(198, 155, 76, 0.08);
+}
+
+.tm-table td {
+  padding: 10px 14px;
+  vertical-align: middle;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.tm-rank-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+}
+
+.tm-rank-1 {
+  background: linear-gradient(135deg, #ffd700, #b8860b);
+  color: #1a0f00;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.tm-rank-2 {
+  background: linear-gradient(135deg, #e0e0e0, #808080);
+  color: #111;
+  box-shadow: 0 0 6px rgba(200, 200, 200, 0.5);
+}
+
+.tm-rank-3 {
+  background: linear-gradient(135deg, #cd7f32, #8b4513);
+  color: #fff;
+  box-shadow: 0 0 6px rgba(205, 127, 50, 0.5);
+}
+
+.tm-rank-other {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
+  padding-left: 6px;
+}
+
+.tm-char-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tm-char-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.tm-char-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tm-level-cell {
+  color: var(--gold-light);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tm-xp-cell {
+  color: #00e5ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tm-deaths-cell {
+  color: #ff5252;
+  font-weight: 700;
+}
+
+.tm-milestones-cell {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tm-ms-pill {
+  background: rgba(198, 155, 76, 0.15);
+  border: 1px solid rgba(198, 155, 76, 0.5);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+}

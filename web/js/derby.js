@@ -138,6 +138,56 @@ function renderTrackScale() {
   return finalTrackWidth;
 }
 
+function renderTextMode(playerList) {
+  const tbody = document.getElementById('tmTableBody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  playerList.forEach((player, index) => {
+    const rank = index + 1;
+    const tr = document.createElement('tr');
+
+    let rankClass = 'tm-rank-other';
+    if (rank === 1) rankClass = 'tm-rank-1';
+    else if (rank === 2) rankClass = 'tm-rank-2';
+    else if (rank === 3) rankClass = 'tm-rank-3';
+
+    const mountName = MOUNT_NAMES[player.mount] || 'Reittier';
+    const mountImgUrl = MOUNT_ICONS[player.mount] || MOUNT_ICONS.HORSE;
+    const xpPct = player.xpPercent != null ? player.xpPercent : (player.progress ? Math.floor(player.progress * 100) : 0);
+    const timeStr = player.totalTimeFormatted || (player.totalTime ? `${Math.floor(player.totalTime / 3600)}h` : '0m');
+
+    let msHtml = '<span style="color: #666;">—</span>';
+    if (player.milestones && Object.keys(player.milestones).length > 0) {
+      const msList = Object.values(player.milestones).sort((a, b) => b.level - a.level);
+      msHtml = msList.map(ms => {
+        const tStr = ms.timeFormatted || (ms.timeSeconds ? `${Math.floor(ms.timeSeconds / 3600)}h` : '');
+        return `<span class="tm-ms-pill" title="${ms.zone || 'Unbekannt'} • 💀 ${ms.deaths || 0} Tode">🚩 Lvl ${ms.level}${tStr ? ' (' + tStr + ')' : ''}</span>`;
+      }).join(' ');
+    }
+
+    tr.innerHTML = `
+      <td><span class="tm-rank-pill ${rankClass}">${rank}</span></td>
+      <td>
+        <div class="tm-char-cell">
+          <img class="tm-char-avatar" src="${mountImgUrl}" alt="${player.name}">
+          <div>
+            <span class="tm-char-name class-${player.class}">${formatPlayerDisplayName(player)}</span>
+            <div style="font-size: 0.72rem; color: #8c7560;">${player.race || ''} • ${mountName}</div>
+          </div>
+        </div>
+      </td>
+      <td class="tm-level-cell">Lvl ${player.level || 1}</td>
+      <td class="tm-xp-cell">+${xpPct}%</td>
+      <td>⏱️ ${timeStr}</td>
+      <td>🗺️ ${player.zone || 'Azeroth'}</td>
+      <td class="tm-deaths-cell">💀 ${player.deaths || 0}</td>
+      <td><div class="tm-milestones-cell">${msHtml}</div></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
 function renderLanes() {
   const trackWidth = renderTrackScale();
   lanesContainer.innerHTML = '';
@@ -153,6 +203,8 @@ function renderLanes() {
   if (playerList.length > 0) {
     leaderLevelEl.textContent = `Lvl ${playerList[0].level}`;
   }
+
+  renderTextMode(playerList);
 
   playerList.forEach(player => {
     const lane = document.createElement('div');
@@ -729,6 +781,44 @@ window.addEventListener('resize', () => {
 
 const urlParams = new URLSearchParams(window.location.search);
 const isDemoForced = urlParams.has('demo');
+
+// Text- / Screenshot-Modus Steuerung
+const trackScrollWrapper = document.querySelector('.track-scroll-wrapper');
+const derbyTextmodeCard = document.getElementById('derbyTextmodeCard');
+const viewToggleBtn = document.getElementById('viewToggleBtn');
+
+let isTextMode = urlParams.has('text') || urlParams.has('table') || urlParams.get('mode') === 'text' || urlParams.get('view') === 'text' || urlParams.get('view') === 'table';
+
+function updateViewDisplay() {
+  if (isTextMode) {
+    if (trackScrollWrapper) trackScrollWrapper.style.display = 'none';
+    if (derbyTextmodeCard) derbyTextmodeCard.style.display = 'block';
+    if (viewToggleBtn) viewToggleBtn.innerHTML = '🎪 Bahn-Ansicht';
+  } else {
+    if (trackScrollWrapper) trackScrollWrapper.style.display = 'block';
+    if (derbyTextmodeCard) derbyTextmodeCard.style.display = 'none';
+    if (viewToggleBtn) viewToggleBtn.innerHTML = '📋 Tabellen-Modus';
+  }
+}
+
+if (viewToggleBtn) {
+  viewToggleBtn.addEventListener('click', () => {
+    isTextMode = !isTextMode;
+    const url = new URL(window.location);
+    if (isTextMode) {
+      url.searchParams.set('text', '1');
+    } else {
+      url.searchParams.delete('text');
+      url.searchParams.delete('table');
+      url.searchParams.delete('mode');
+      url.searchParams.delete('view');
+    }
+    window.history.replaceState({}, '', url);
+    updateViewDisplay();
+  });
+}
+
+updateViewDisplay();
 
 if (isDemoForced) {
   loadDemoData();

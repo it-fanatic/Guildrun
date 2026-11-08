@@ -86,7 +86,6 @@ Customize your runner! Choose from iconic racial mounts:
 | `/gr sync` or `/gr refresh` | Requests a full data sync from all online guild members |
 | `/gr sound` | Toggles Darkmoon Faire carnival sounds and cheering |
 | `/gr remove <Name>` | Removes an inactive alt or test character from your local race list (or click the red **[X]** on the track) |
-| `/gr deaths <count>` | Manually sets or corrects your death counter |
 | `/gr reset` | *(Guild Master / Officer)* Resets the entire guild race for a fresh season |
 | `/gr test` | Generates sample demo racers for testing |
 

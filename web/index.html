@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guildrun - Das Dunkelmond-Derby | Gilden-Levelrennen</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="css/derby.css?v=8">
+  <link rel="stylesheet" href="css/derby.css?v=9">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -60,6 +60,9 @@
           <span class="info-icon">ℹ</span>
           <span>Dynamische Rennstrecke: Freigeschaltet bis <b id="unlockedLevelBadge">Level 30</b> (Passt sich automatisch an)</span>
         </div>
+        <button type="button" id="viewToggleBtn" class="view-toggle-btn" title="Zwischen Rennstrecke und Screenshot-Tabelle wechseln">
+          📋 Tabellen-Modus
+        </button>
       </div>
 
       <!-- Scroll-Container Wrapper fuer sauberen Außenabstand (Padding) -->
@@ -78,6 +81,37 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- 2b. Screenshot / Text-Modus Tabelle (wird via ?text oder Umschalter aktiviert) -->
+    <section class="derby-textmode-card" id="derbyTextmodeCard" style="display: none;">
+      <div class="textmode-header">
+        <div class="tm-title-row">
+          <h2>📜 RENN-STAND & ERGEBNISSE (TABELLEN-ANSICHT)</h2>
+          <span class="tm-badge">Screenshot-Modus</span>
+        </div>
+        <p class="tm-subtitle" id="tmSubtitle">Aktueller Zwischenstand des Gildenrennens</p>
+      </div>
+
+      <div class="tm-table-wrapper">
+        <table class="tm-table">
+          <thead>
+            <tr>
+              <th class="th-rank">#</th>
+              <th class="th-char">Charakter</th>
+              <th class="th-level">Level</th>
+              <th class="th-xp">Fortschritt</th>
+              <th class="th-time">Spielzeit (/played)</th>
+              <th class="th-zone">Zone</th>
+              <th class="th-deaths">Tode</th>
+              <th class="th-milestones">Meilensteine</th>
+            </tr>
+          </thead>
+          <tbody id="tmTableBody">
+            <!-- Dynamisch befüllt -->
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- 3. Vier Statistik-Kacheln unter dem Derby (Top 5 Bestenlisten) -->
@@ -160,6 +194,6 @@
     <div class="tt-close-hint">Tippen zum Schließen</div>
   </div>
 
-  <script src="js/derby.js?v=5"></script>
+  <script src="js/derby.js?v=6"></script>
 </body>
 </html>
