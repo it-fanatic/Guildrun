@@ -987,15 +987,19 @@ function GuildrunUI.RefreshStats(playerList)
         end
     end
 
-    -- 2. Speedrunner (/played)
+    -- 2. Speedrunner (/played gewichtet nach Level-Kurve)
     local listSpeed = {}
     for _, p in ipairs(playerList) do
         if (p.totalTime or 0) > 0 then table.insert(listSpeed, p) end
     end
     table.sort(listSpeed, function(a, b)
-        local rateA = ((a.level or 1) + (a.progress or 0)) / (a.totalTime / 3600)
-        local rateB = ((b.level or 1) + (b.progress or 0)) / (b.totalTime / 3600)
-        return rateA > rateB
+        local lvlA = (a.level or 1) + (a.progress or 0)
+        local lvlB = (b.level or 1) + (b.progress or 0)
+        local hoursA = math.max(0.1, (a.totalTime or 1) / 3600)
+        local hoursB = math.max(0.1, (b.totalTime or 1) / 3600)
+        local scoreA = (lvlA ^ 2.4) / hoursA
+        local scoreB = (lvlB ^ 2.4) / hoursB
+        return scoreA > scoreB
     end)
     local speedSource = #listSpeed > 0 and listSpeed or listLevel
 
@@ -1009,7 +1013,7 @@ function GuildrunUI.RefreshStats(playerList)
             local nameStr = GetCleanDisplayName(p.name, p.realm)
             row.nameText:SetText(string.format("|cff%s%s|r", colorHex, nameStr))
             local tStr = p.totalTimeFormatted or (p.totalTime and Guildrun_FormatTime(p.totalTime)) or "0m"
-            row.valText:SetText(string.format("|cff00e5ff%s|r", tStr))
+            row.valText:SetText(string.format("|cffffcc00Lvl %d|r  |cff00e5ff%s|r", p.level or 1, tStr))
             row:Show()
         else
             row:Hide()

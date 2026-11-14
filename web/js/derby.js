@@ -464,21 +464,25 @@ function renderLeaderboards() {
     </div>
   `).join('');
 
-  // 2. Speedrunner (/played)
+  // 2. Speedrunner (/played gewichtet nach Level-Kurve)
   const sortedSpeed = [...playerList].filter(p => (p.totalTime || 0) > 0).sort((a, b) => {
-    const rateA = ((a.level || 1) + (a.progress || 0)) / (a.totalTime / 3600);
-    const rateB = ((b.level || 1) + (b.progress || 0)) / (b.totalTime / 3600);
-    return rateB - rateA;
+    const lvlA = (a.level || 1) + (a.progress || 0);
+    const lvlB = (b.level || 1) + (b.progress || 0);
+    const hoursA = Math.max(0.1, (a.totalTime || 1) / 3600);
+    const hoursB = Math.max(0.1, (b.totalTime || 1) / 3600);
+    const scoreA = Math.pow(lvlA, 2.4) / hoursA;
+    const scoreB = Math.pow(lvlB, 2.4) / hoursB;
+    return scoreB - scoreA;
   }).slice(0, 5);
 
   lbFastestLevel.innerHTML = (sortedSpeed.length > 0 ? sortedSpeed : sortedLevel).map((p, idx) => `
-    <div class="lb-item">
+    <div class="lb-item" title="Level ${p.level || 1} in ${p.totalTimeFormatted || '0m'}">
       <span class="lb-rank ${getRankClass(idx)}">#${idx + 1}</span>
       <div class="lb-player-badge">
         <img class="lb-avatar" src="${CLASS_ICONS[p.class] || CLASS_ICONS.WARRIOR}">
         <span class="lb-name class-${p.class}">${formatPlayerDisplayName(p)}</span>
       </div>
-      <span class="lb-value speed">${p.totalTimeFormatted || 'Speed'}</span>
+      <span class="lb-value speed">Lvl ${p.level || 1} • ${p.totalTimeFormatted || '0m'}</span>
     </div>
   `).join('');
 
