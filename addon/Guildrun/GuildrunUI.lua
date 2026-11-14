@@ -406,6 +406,9 @@ function GuildrunUI.CreateFrame()
 
     tabTrack:SetScript("OnClick", function()
         currentTab = "TRACK"
+        if mainFrame.scrollFrame and mainFrame.scrollFrame.SetVerticalScroll then
+            mainFrame.scrollFrame:SetVerticalScroll(0)
+        end
         GuildrunUI.Refresh()
     end)
 
@@ -629,9 +632,6 @@ function GuildrunUI.Refresh()
     end
 
     local content = mainFrame.content
-    if mainFrame.scrollFrame and mainFrame.scrollFrame.SetVerticalScroll then
-        mainFrame.scrollFrame:SetVerticalScroll(0)
-    end
     table.sort(playerList, function(a, b)
         local la = (a.level or 1) + (a.progress or 0)
         local lb = (b.level or 1) + (b.progress or 0)
@@ -947,6 +947,13 @@ function GuildrunUI.Refresh()
     end
 
     content:SetHeight(math.max(100, yOffset + 20))
+    if mainFrame.scrollFrame and mainFrame.scrollFrame.GetVerticalScroll and mainFrame.scrollFrame.GetVerticalScrollRange then
+        local cur = mainFrame.scrollFrame:GetVerticalScroll()
+        local maxScroll = mainFrame.scrollFrame:GetVerticalScrollRange()
+        if cur > maxScroll then
+            mainFrame.scrollFrame:SetVerticalScroll(math.max(0, maxScroll))
+        end
+    end
 end
 
 -- STATISTIKEN / HALL OF FAME IM ADDON
